@@ -78,8 +78,10 @@ export const CVPage: React.FC<CVPageProps> = ({ onBack }) => {
           >
             Driven Product Designer transitioning from extensive project management and international account leadership. 
             Proficient in Figma, user research, and agile methodologies, with a passion for transforming complex data 
-            into intuitive, user-centric digital products. Ready to leverage a strong background in architecture and 
-            strategic planning to deliver measurable product improvements.
+            into intuitive, user-centric digital products. Experienced in end-to-end product delivery from design to 
+            deployment using modern AI-assisted development workflows, enabling rapid prototyping and seamless 
+            design-to-development handoff. Ready to leverage a strong background in architecture and strategic 
+            planning to deliver measurable product improvements.
           </p>
         </section>
 
@@ -122,10 +124,12 @@ export const CVPage: React.FC<CVPageProps> = ({ onBack }) => {
             
             <div>
               <h3 className="text-slate-900 mb-2" style={{ fontSize: '17px', fontWeight: 600 }}>
-                Technical:
+                Development Workflow:
               </h3>
               <p className="text-slate-700" style={{ fontSize: '16px', fontWeight: 400 }}>
-                HTML, CSS, JavaScript basics.
+                AI-Assisted Front-End Development (Figma to Code), Git/GitHub Version Control, 
+                Deployment & CI/CD (Netlify), Design-to-Development Handoff, Responsive Design Principles, 
+                Interactive Prototyping, Build Troubleshooting.
               </p>
             </div>
             
@@ -206,6 +210,18 @@ export const CVPage: React.FC<CVPageProps> = ({ onBack }) => {
               <p className="text-slate-700" style={{ fontSize: '16px', fontWeight: 400 }}>
                 Improved the learnability of the Community Event Creation flow by adding a visible '+ Create Event' 
                 button and share options post-creation, resolving a major usability concern.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-slate-900 mb-1" style={{ fontSize: '17px', fontWeight: 600 }}>
+                Portfolio & Documentation:
+              </h3>
+              <p className="text-slate-700" style={{ fontSize: '16px', fontWeight: 400 }}>
+                Designed and deployed an interactive portfolio website (brunocamposdesign.netlify.app) featuring 
+                comprehensive case studies with scroll animations and responsive design. Leveraged AI-assisted development 
+                tools (Figma Make) to convert Figma designs to production code, managed version control via Git/GitHub, 
+                and successfully deployed via Netlify CI/CD pipeline after troubleshooting build configuration issues.
               </p>
             </div>
           </div>
