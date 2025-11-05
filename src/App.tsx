@@ -56,6 +56,21 @@ function PortfolioWrapper({ initialRoute }: { initialRoute: string }) {
   const [isReady, setIsReady] = useState(initialRoute === '/');
   const isFirstRender = React.useRef(true);
 
+  // Update page title based on route
+  useEffect(() => {
+    const titles: Record<string, string> = {
+      '/': 'Bruno Campos Design',
+      '/work/galegate': 'GaleGate Case Study - Bruno Campos Design',
+      '/work/fashion-food': 'Fashion & Food Photography - Bruno Campos Design',
+      '/work/home-sewing': 'Home Sewing Project - Bruno Campos Design',
+      '/cv': 'CV - Bruno Campos Design',
+      '/about': 'About - Bruno Campos Design',
+      '/contact': 'Contact - Bruno Campos Design',
+    };
+    
+    document.title = titles[location.pathname] || 'Bruno Campos Design';
+  }, [location.pathname]);
+
   // Navigate to initial route on mount if needed
   useEffect(() => {
     if (initialRoute !== '/' && location.pathname === '/') {
