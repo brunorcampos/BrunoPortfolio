@@ -3,12 +3,12 @@ import { ArrowLeft, Target, Users, Zap, Smartphone, CheckCircle, ArrowRight, Map
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { motion } from 'motion/react';
-import GaleGateDashboard from './GaleGateDashboard';
-import EnhancedSpotSearch from './EnhancedSpotSearch';
-import Community from './Community';
-import WeatherMain from './WeatherMain';
-import Favorites from './Favorites';
-import UserProfile from './UserProfile';
+import GaleGateDashboard from '../imports/GaleGateDashboard';
+import EnhancedSpotSearch from '../imports/EnhancedSpotSearch-4-2741';
+import Community from '../imports/CommunityHubCalendarOfEvents';
+import WeatherMain from '../imports/WatherMain';
+import Favorites from '../imports/SportSearchFavorites2';
+import UserProfile from '../imports/SportSearchOverview';
 import heroMockup from 'figma:asset/e6c6ec73154069048535ac895bc08699366b9a06.png';
 import galegateLogo from 'figma:asset/2156d488f82df24560464c56f089faf83979cc18.png';
 import marcosPersona from 'figma:asset/6292c0ab4b7a3a4a7685d74c586021921b68409a.png';
