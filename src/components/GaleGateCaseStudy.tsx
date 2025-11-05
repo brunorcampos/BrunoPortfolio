@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ArrowLeft, Target, Users, Zap, Smartphone, CheckCircle, ArrowRight, MapPin, Cloud, Wind, Waves, Heart, Star, Calendar, Search, ChevronDown } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { motion } from 'motion/react';
-import GaleGateDashboard from '../imports/GaleGateDashboard';
-import EnhancedSpotSearch from '../imports/EnhancedSpotSearch-4-2741';
-import Community from '../imports/CommunityHubCalendarOfEvents';
-import WeatherMain from '../imports/WatherMain';
-import Favorites from '../imports/SportSearchFavorites2';
-import UserProfile from '../imports/SportSearchOverview';
 import heroMockup from 'figma:asset/e6c6ec73154069048535ac895bc08699366b9a06.png';
 import galegateLogo from 'figma:asset/2156d488f82df24560464c56f089faf83979cc18.png';
 import marcosPersona from 'figma:asset/6292c0ab4b7a3a4a7685d74c586021921b68409a.png';
@@ -72,52 +66,11 @@ export function GaleGateCaseStudy({ onClose, headerImage }: GaleGateCaseStudyPro
     return () => clearTimeout(timer);
   }, []);
 
-  // Prototype viewer state
-  const [currentScreen, setCurrentScreen] = useState<string>('dashboard');
-
-  const renderPrototypeScreen = () => {
-    switch (currentScreen) {
-      case 'dashboard':
-        return <GaleGateDashboard 
-          onNavigateToSpotSearch={() => setCurrentScreen('search')}
-          onNavigateToCommunity={() => setCurrentScreen('community')}
-          onNavigateToWeather={() => setCurrentScreen('weather')}
-          onNavigateToFavorites={() => setCurrentScreen('favorites')}
-          onNavigateToProfile={() => setCurrentScreen('profile')}
-        />;
-      case 'search':
-        return <EnhancedSpotSearch 
-          onNavigateBack={() => setCurrentScreen('dashboard')}
-          onNavigateToSpotDetail={() => setCurrentScreen('search')}
-          onNavigateToFavorites={() => setCurrentScreen('favorites')}
-        />;
-      case 'community':
-        return <Community 
-          onNavigateBack={() => setCurrentScreen('dashboard')}
-          onNavigateToCalendar={() => setCurrentScreen('community')}
-          onNavigateToRewards={() => setCurrentScreen('community')}
-        />;
-      case 'weather':
-        return <WeatherMain 
-          onNavigateBack={() => setCurrentScreen('dashboard')}
-          onNavigateToDetail={() => setCurrentScreen('weather')}
-        />;
-      case 'favorites':
-        return <Favorites 
-          onNavigateBack={() => setCurrentScreen('dashboard')}
-          onNavigateToSpotDetail={() => setCurrentScreen('search')}
-        />;
-      case 'profile':
-        return <UserProfile 
-          onNavigateBack={() => setCurrentScreen('dashboard')}
-        />;
-      default:
-        return <GaleGateDashboard 
-          onNavigateToSpotSearch={() => setCurrentScreen('search')}
-          onNavigateToCommunity={() => setCurrentScreen('community')}
-        />;
-    }
-  };
+  // 🔗 FIGMA PROTOTYPE EMBED URL
+  const yourFigmaPrototypeLink = "https://www.figma.com/proto/rZMxjd0TxyMLBpsuX95qp2/GaleGate-Final?page-id=0%3A1&node-id=207-10449&viewport=-90%2C-258%2C0.16&t=ADf8wLRw0MIS9MXe-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=207%3A10449";
+  
+  // Convert to Figma embed format (required for iframe embedding)
+  const figmaPrototypeUrl = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(yourFigmaPrototypeLink)}`;
 
   return (
     <div className="min-h-screen bg-white">
@@ -1506,150 +1459,60 @@ export function GaleGateCaseStudy({ onClose, headerImage }: GaleGateCaseStudyPro
               </p>
             </div>
 
-            {/* Prototype Viewer with Side Navigation */}
-            <div id="prototype-viewer" className="flex items-start justify-center gap-6 lg:gap-12 py-12 flex-wrap lg:flex-nowrap">
+            {/* Figma Prototype Viewer - Centered */}
+            <div id="prototype-viewer" className="flex flex-col items-center justify-center gap-8 py-12">
               
-              {/* Navigation Controls - Left Side */}
-              <div className="space-y-4 order-2 lg:order-1 w-full lg:w-auto">
-                <p className="text-[#2C4A6B]/60 text-center mb-6" style={{ fontSize: '15px', fontWeight: 500 }}>
-                  💡 Navigate screens
-                </p>
-                <div className="flex flex-col gap-3 lg:min-w-[180px]">
-                  <button
-                    onClick={() => setCurrentScreen('dashboard')}
-                    className={`w-full px-6 py-3 rounded-xl border-2 transition-all text-left ${
-                      currentScreen === 'dashboard'
-                        ? 'bg-[#FF6B35] border-[#FF6B35] text-white'
-                        : 'bg-white border-gray-200 text-[#2C4A6B] hover:border-[#FF6B35]/50'
-                    }`}
-                    style={{ fontSize: '14px', fontWeight: 600 }}
-                  >
-                    🏠 Dashboard
-                  </button>
-                  <button
-                    onClick={() => setCurrentScreen('search')}
-                    className={`w-full px-6 py-3 rounded-xl border-2 transition-all text-left ${
-                      currentScreen === 'search'
-                        ? 'bg-[#FF6B35] border-[#FF6B35] text-white'
-                        : 'bg-white border-gray-200 text-[#2C4A6B] hover:border-[#FF6B35]/50'
-                    }`}
-                    style={{ fontSize: '14px', fontWeight: 600 }}
-                  >
-                    🔍 Spot Search
-                  </button>
-                  <button
-                    onClick={() => setCurrentScreen('weather')}
-                    className={`w-full px-6 py-3 rounded-xl border-2 transition-all text-left ${
-                      currentScreen === 'weather'
-                        ? 'bg-[#FF6B35] border-[#FF6B35] text-white'
-                        : 'bg-white border-gray-200 text-[#2C4A6B] hover:border-[#FF6B35]/50'
-                    }`}
-                    style={{ fontSize: '14px', fontWeight: 600 }}
-                  >
-                    ☀️ Weather
-                  </button>
-                  <button
-                    onClick={() => setCurrentScreen('community')}
-                    className={`w-full px-6 py-3 rounded-xl border-2 transition-all text-left ${
-                      currentScreen === 'community'
-                        ? 'bg-[#FF6B35] border-[#FF6B35] text-white'
-                        : 'bg-white border-gray-200 text-[#2C4A6B] hover:border-[#FF6B35]/50'
-                    }`}
-                    style={{ fontSize: '14px', fontWeight: 600 }}
-                  >
-                    👥 Community
-                  </button>
-                  <button
-                    onClick={() => setCurrentScreen('favorites')}
-                    className={`w-full px-6 py-3 rounded-xl border-2 transition-all text-left ${
-                      currentScreen === 'favorites'
-                        ? 'bg-[#FF6B35] border-[#FF6B35] text-white'
-                        : 'bg-white border-gray-200 text-[#2C4A6B] hover:border-[#FF6B35]/50'
-                    }`}
-                    style={{ fontSize: '14px', fontWeight: 600 }}
-                  >
-                    ❤️ Favorites
-                  </button>
-                  <button
-                    onClick={() => setCurrentScreen('profile')}
-                    className={`w-full px-6 py-3 rounded-xl border-2 transition-all text-left ${
-                      currentScreen === 'profile'
-                        ? 'bg-[#FF6B35] border-[#FF6B35] text-white'
-                        : 'bg-white border-gray-200 text-[#2C4A6B] hover:border-[#FF6B35]/50'
-                    }`}
-                    style={{ fontSize: '14px', fontWeight: 600 }}
-                  >
-                    👤 Profile
-                  </button>
-                </div>
-
-                {/* External Figma Prototype Link */}
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <p className="text-[#2C4A6B]/60 text-center mb-3" style={{ fontSize: '13px', fontWeight: 500 }}>
-                    Or access the prototype directly
-                  </p>
-                  <a
-                    href="https://www.figma.com/proto/rZMxjd0TxyMLBpsuX95qp2/GaleGate-Final?page-id=0%3A1&node-id=207-10449&p=f&viewport=-226%2C-425%2C0.23&t=nIWywRPb9ZaaFZXC-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=207%3A10449"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl border-2 border-[#2C4A6B] bg-white text-[#2C4A6B] hover:bg-[#2C4A6B] hover:text-white transition-all"
-                    style={{ fontSize: '14px', fontWeight: 600 }}
-                  >
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/>
-                    </svg>
-                    Open in Figma
-                  </a>
-                </div>
-              </div>
-
-              {/* iPhone 16 Pro Frame Container */}
-              <div className="relative inline-block order-1 lg:order-2 flex-shrink-0" style={{ transform: 'scale(min(1, calc(90vw / 420)))' }}>
-                {/* iPhone Frame - Realistic white/silver iPhone 16 Pro */}
+              {/* Floating iPhone Mockup */}
+              <div className="relative inline-block">
+                {/* iPhone Frame - Clean minimal bezel */}
                 <div 
-                  className="relative rounded-[60px] shadow-2xl"
+                  className="relative rounded-[48px] bg-black shadow-2xl"
                   style={{ 
-                    width: '420px', 
-                    height: '880px',
-                    background: 'linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 50%, #e8e8e8 100%)',
-                    border: '2px solid #d0d0d0',
-                    padding: '12px'
+                    width: '393px', 
+                    height: '852px',
+                    padding: '12px',
+                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                   }}
                 >
-                  {/* Volume Buttons - Left Side */}
-                  <div className="absolute left-0 top-[120px] w-1 h-[30px] bg-gradient-to-r from-[#c0c0c0] to-[#d8d8d8] rounded-l-sm"></div>
-                  <div className="absolute left-0 top-[170px] w-1 h-[60px] bg-gradient-to-r from-[#c0c0c0] to-[#d8d8d8] rounded-l-sm"></div>
-                  <div className="absolute left-0 top-[240px] w-1 h-[60px] bg-gradient-to-r from-[#c0c0c0] to-[#d8d8d8] rounded-l-sm"></div>
-                  
-                  {/* Power Button - Right Side */}
-                  <div className="absolute right-0 top-[200px] w-1 h-[80px] bg-gradient-to-l from-[#c0c0c0] to-[#d8d8d8] rounded-r-sm"></div>
-                  
-                  {/* Screen Content Area - Exact iPhone 16 screen: 393x852 */}
+
+
+                  {/* Screen Content - Figma Prototype */}
                   <div 
-                    className="w-[393px] h-[852px] bg-black rounded-[48px] overflow-hidden relative shadow-inner"
-                    style={{
-                      boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)'
-                    }}
+                    className="w-full h-full bg-white rounded-[36px] overflow-hidden relative"
                   >
-                    {/* Clickable Prototype Content */}
-                    <div className="w-full h-full overflow-hidden" style={{ position: 'relative' }}>
-                      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-                        {renderPrototypeScreen()}
-                      </div>
-                    </div>
+                    <iframe
+                      src={figmaPrototypeUrl}
+                      className="border-0"
+                      allowFullScreen
+                      title="GaleGate Interactive Prototype"
+                      style={{ 
+                        border: 'none',
+                        background: 'white',
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%) scale(1.35)',
+                        transformOrigin: 'center center',
+                        width: '100%',
+                        height: '100%'
+                      }}
+                    />
                   </div>
-                  
-                  {/* Dynamic Island */}
-                  <div 
-                    className="absolute top-[16px] left-1/2 -translate-x-1/2 bg-black rounded-full z-20"
-                    style={{
-                      width: '126px',
-                      height: '37px',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-                    }}
-                  ></div>
                 </div>
               </div>
+
+              {/* View Full Prototype Button */}
+              <a 
+                href="https://www.figma.com/proto/rZMxjd0TxyMLBpsuX95qp2/GaleGate-Final?page-id=0%3A1&node-id=207-10449&viewport=-90%2C-258%2C0.16&t=ADf8wLRw0MIS9MXe-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=207%3A10449"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#FF6B35] text-white rounded-full hover:bg-[#FF6B35]/90 transition-all shadow-lg shadow-[#FF6B35]/30 hover:shadow-xl hover:shadow-[#FF6B35]/40"
+                style={{ fontWeight: 600, fontSize: '16px' }}
+              >
+                <ArrowRight className="w-5 h-5" />
+                View Full Prototype in Figma
+              </a>
+
             </div>
             </div>
           </section>
