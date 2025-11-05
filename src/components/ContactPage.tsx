@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Mail, Phone, MapPin, Linkedin, Github, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Send } from 'lucide-react';
+import { Navigation } from './Navigation';
 
 interface ContactPageProps {
   onBack: () => void;
@@ -61,23 +62,8 @@ export function ContactPage({ onBack }: ContactPageProps) {
       ></div>
 
       <div className="relative z-10">
-        {/* Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-2xl border-b border-white/10">
-          <div className="max-w-[1400px] mx-auto px-8 lg:px-16 h-20 flex items-center justify-between">
-            <button
-              onClick={onBack}
-              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
-              style={{ fontWeight: 600, fontSize: '15px' }}
-            >
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              Back to Portfolio
-            </button>
-            
-            <div className="text-transparent bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text" style={{ fontWeight: 700, fontSize: '16px', letterSpacing: '0.1em' }}>
-              CONTACT
-            </div>
-          </div>
-        </header>
+        {/* Navigation */}
+        <Navigation />
 
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-8 lg:px-16">

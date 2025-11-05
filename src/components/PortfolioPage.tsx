@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowRight, MapPin, Clock } from 'lucide-react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Navigation } from './Navigation';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 import galegateImage from 'figma:asset/2f7866467c87b9ccd8a9537671353673d88f583e.png';
 import profilePhoto from 'figma:asset/a0abff23a261138a8447f7334242ed0bdd71fefc.png';
@@ -10,8 +11,6 @@ import sewingCoverImage from 'figma:asset/c801a30887e87bdbebaa5fb2f943e2b29b4292
 
 export function PortfolioPage() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleNavigation = (route: string) => {
     navigate(route);
@@ -67,85 +66,7 @@ export function PortfolioPage() {
 
       <div className="relative z-10">
         {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-2xl border-b border-white/10">
-          <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16 h-20 flex items-center justify-between">
-            {/* Logo */}
-            <div className="text-transparent bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text" style={{ fontWeight: 700, fontSize: '16px', letterSpacing: '0.1em' }}>
-              BRUNO CAMPOS
-            </div>
-            
-            {/* Right Side Info */}
-            <div className="flex items-center gap-8">
-              <div className="hidden md:flex items-center gap-6 text-slate-400" style={{ fontSize: '14px', fontWeight: 500 }}>
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>Amsterdam, NL</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4" />
-                  <span>{new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Amsterdam' })} CET</span>
-                </div>
-              </div>
-              
-              {/* Menu Button */}
-              <button 
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="w-10 h-10 flex flex-col items-center justify-center gap-1.5 hover:opacity-60 transition-opacity"
-                aria-label="Menu"
-              >
-                <span className="w-6 h-0.5 bg-white transition-all" style={{ transform: menuOpen ? 'rotate(45deg) translateY(4px)' : 'none' }}></span>
-                <span className="w-6 h-0.5 bg-white transition-all" style={{ opacity: menuOpen ? 0 : 1 }}></span>
-                <span className="w-6 h-0.5 bg-white transition-all" style={{ transform: menuOpen ? 'rotate(-45deg) translateY(-4px)' : 'none' }}></span>
-              </button>
-            </div>
-          </div>
-        </nav>
-
-        {/* Full Screen Menu Overlay */}
-        {menuOpen && (
-          <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex items-center justify-center overflow-hidden">
-            <div className="text-center space-y-8 px-4">
-              <a 
-                href="#work" 
-                onClick={() => setMenuOpen(false)}
-                className="block text-white hover:text-transparent hover:bg-gradient-to-r hover:from-violet-400 hover:to-cyan-400 hover:bg-clip-text transition-all"
-                style={{ fontSize: 'clamp(32px, 10vw, 48px)', fontWeight: 700 }}
-              >
-                Work
-              </a>
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  handleNavigation('/about');
-                }}
-                className="block text-white hover:text-transparent hover:bg-gradient-to-r hover:from-violet-400 hover:to-cyan-400 hover:bg-clip-text transition-all w-full"
-                style={{ fontSize: 'clamp(32px, 10vw, 48px)', fontWeight: 700 }}
-              >
-                About
-              </button>
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  handleNavigation('/cv');
-                }}
-                className="block text-white hover:text-transparent hover:bg-gradient-to-r hover:from-violet-400 hover:to-cyan-400 hover:bg-clip-text transition-all w-full"
-                style={{ fontSize: 'clamp(32px, 10vw, 48px)', fontWeight: 700 }}
-              >
-                CV
-              </button>
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  handleNavigation('/contact');
-                }}
-                className="block text-white hover:text-transparent hover:bg-gradient-to-r hover:from-violet-400 hover:to-cyan-400 hover:bg-clip-text transition-all w-full"
-                style={{ fontSize: 'clamp(32px, 10vw, 48px)', fontWeight: 700 }}
-              >
-                Contact
-              </button>
-            </div>
-          </div>
-        )}
+        <Navigation />
 
         {/* Hero Section */}
         <section className="pt-32 pb-24 px-4 sm:px-8 lg:px-16">

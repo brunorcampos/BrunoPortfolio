@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
+import { Navigation } from './Navigation';
 // Original images
 import originalImage1 from 'figma:asset/1f3f9ec04b592235afbf17dcd6d65dbeee96e20e.png';
 import originalImage2 from 'figma:asset/248baa96dfb5230e60ee67d6c8ae570c81e76505.png';
@@ -65,21 +65,13 @@ export function FashionFoodPhotography({ onClose }: FashionFoodPhotographyProps)
 
   return (
     <div className="min-h-screen bg-black">
-      {/* Header with Close Button */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
-        <div className="max-w-[1600px] mx-auto px-8 lg:px-16 h-20 flex items-center justify-between">
-          <div className="text-white" style={{ fontWeight: 600, fontSize: '14px', letterSpacing: '0.15em' }}>
-            FASHION & FOOD PHOTOGRAPHY
-          </div>
-          
-          <button 
-            onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
-            aria-label="Close"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
+      {/* Navigation with dark theme wrapper */}
+      <div className="bg-black">
+        {/* Animated Background Gradient */}
+        <div className="fixed inset-0 bg-gradient-to-br from-violet-950 via-slate-950 to-cyan-950 opacity-80 pointer-events-none"></div>
+        <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.15),transparent_50%)] pointer-events-none"></div>
+        <div className="fixed inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(6,182,212,0.15),transparent_50%)] pointer-events-none"></div>
+        <Navigation />
       </div>
 
       {/* Photo Grid */}

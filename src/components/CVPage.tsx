@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowLeft, Mail, Phone, MapPin, ExternalLink, Download } from 'lucide-react';
+import { Download, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { Navigation } from './Navigation';
 
 interface CVPageProps {
   onBack: () => void;
@@ -8,18 +9,12 @@ interface CVPageProps {
 export const CVPage: React.FC<CVPageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header with Back Button */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div className="max-w-[900px] mx-auto px-6 py-4 flex items-center justify-between">
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
-            style={{ fontSize: '15px', fontWeight: 500 }}
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Portfolio
-          </button>
-          
+      {/* Navigation - Light theme for CV page */}
+      <Navigation theme="light" />
+      
+      {/* Download Button - Integrated into page flow */}
+      <div className="bg-slate-50 border-b border-slate-200">
+        <div className="max-w-[900px] mx-auto px-6 py-4 flex justify-end">
           <button
             onClick={() => window.print()}
             className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors"

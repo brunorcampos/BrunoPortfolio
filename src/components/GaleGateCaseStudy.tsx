@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, Target, Users, Zap, Smartphone, CheckCircle, ArrowRight, MapPin, Cloud, Wind, Waves, Heart, Star, Calendar, Search, ChevronDown } from 'lucide-react';
+import { Target, Users, Zap, Smartphone, CheckCircle, ArrowRight, MapPin, Cloud, Wind, Waves, Heart, Star, Calendar, Search, ChevronDown } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Navigation } from './Navigation';
 import { motion } from 'motion/react';
 import heroMockup from 'figma:asset/e6c6ec73154069048535ac895bc08699366b9a06.png';
 import galegateLogo from 'figma:asset/2156d488f82df24560464c56f089faf83979cc18.png';
@@ -74,23 +75,16 @@ export function GaleGateCaseStudy({ onClose, headerImage }: GaleGateCaseStudyPro
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-16 h-20 flex items-center justify-between">
-          <button
-            onClick={onClose}
-            className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
-            style={{ fontWeight: 500, fontSize: '15px' }}
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Portfolio
-          </button>
-          
-          <div className="text-slate-900" style={{ fontWeight: 600, fontSize: '16px', letterSpacing: '0.1em' }}>
-            CASE STUDY
-          </div>
+      {/* Navigation with dark theme wrapper */}
+      <div className="bg-black fixed top-0 left-0 right-0 z-50">
+        {/* Animated Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-950 via-slate-950 to-cyan-950 opacity-80 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.15),transparent_50%)] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(6,182,212,0.15),transparent_50%)] pointer-events-none"></div>
+        <div className="relative">
+          <Navigation />
         </div>
-      </header>
+      </div>
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 overflow-hidden bg-gray-50">

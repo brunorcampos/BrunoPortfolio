@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { X } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Navigation } from './Navigation';
 import sewingCoverImage from 'figma:asset/c801a30887e87bdbebaa5fb2f943e2b29b4292a9.png';
 
 interface HomeSewingProjectProps {
@@ -32,20 +32,14 @@ export function HomeSewingProject({ onClose }: HomeSewingProjectProps) {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header with Close Button */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-slate-200">
-        <div className="max-w-[1600px] mx-auto px-8 lg:px-16 h-20 flex items-center justify-between">
-          <div className="text-slate-900" style={{ fontWeight: 600, fontSize: '14px', letterSpacing: '0.15em' }}>
-            HOME SEWING PROJECT
-          </div>
-          
-          <button 
-            onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors"
-            aria-label="Close"
-          >
-            <X className="w-6 h-6" />
-          </button>
+      {/* Navigation with dark theme wrapper */}
+      <div className="bg-black fixed top-0 left-0 right-0 z-50">
+        {/* Animated Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-950 via-slate-950 to-cyan-950 opacity-80 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.15),transparent_50%)] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(6,182,212,0.15),transparent_50%)] pointer-events-none"></div>
+        <div className="relative">
+          <Navigation />
         </div>
       </div>
 

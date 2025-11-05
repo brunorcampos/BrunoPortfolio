@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { PortfolioPage } from './components/PortfolioPage';
+import { WorkPage } from './components/WorkPage';
 import { GaleGateCaseStudy } from './components/GaleGateCaseStudy';
 import { FashionFoodPhotography } from './components/FashionFoodPhotography';
 import { HomeSewingProject } from './components/HomeSewingProject';
@@ -60,6 +61,7 @@ function PortfolioWrapper({ initialRoute }: { initialRoute: string }) {
   useEffect(() => {
     const titles: Record<string, string> = {
       '/': 'Bruno Campos Design',
+      '/work': 'Featured Work - Bruno Campos Design',
       '/work/galegate': 'GaleGate Case Study - Bruno Campos Design',
       '/work/fashion-food': 'Fashion & Food Photography - Bruno Campos Design',
       '/work/home-sewing': 'Home Sewing Project - Bruno Campos Design',
@@ -130,6 +132,7 @@ function PortfolioWrapper({ initialRoute }: { initialRoute: string }) {
         <div ref={scrollContainerRef} className="w-full overflow-y-auto overflow-x-hidden">
           <Routes>
             <Route path="/" element={<PortfolioPage />} />
+            <Route path="/work" element={<WorkPage />} />
             <Route path="/work/galegate" element={<GaleGateWrapper />} />
             <Route path="/work/fashion-food" element={<FashionFoodWrapper />} />
             <Route path="/work/home-sewing" element={<HomeSewingWrapper />} />
