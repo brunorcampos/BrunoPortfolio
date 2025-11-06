@@ -82,7 +82,7 @@ export function GaleGateCaseStudy({ onClose, headerImage }: GaleGateCaseStudyPro
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.15),transparent_50%)] pointer-events-none"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(6,182,212,0.15),transparent_50%)] pointer-events-none"></div>
         <div className="relative">
-          <Navigation />
+          <Navigation theme="light" />
         </div>
       </div>
 

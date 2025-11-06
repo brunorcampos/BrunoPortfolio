@@ -50,11 +50,8 @@ function ContactWrapper() {
 }
 
 // Portfolio wrapper
-function PortfolioWrapper({ initialRoute }: { initialRoute: string }) {
-  const navigate = useNavigate();
+function PortfolioWrapper() {
   const location = useLocation();
-  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
-  const [isReady, setIsReady] = useState(initialRoute === '/');
   const isFirstRender = React.useRef(true);
 
   // Update page title based on route
@@ -73,20 +70,6 @@ function PortfolioWrapper({ initialRoute }: { initialRoute: string }) {
     document.title = titles[location.pathname] || 'Bruno Campos Design';
   }, [location.pathname]);
 
-  // Navigate to initial route on mount if needed
-  useEffect(() => {
-    if (initialRoute !== '/' && location.pathname === '/') {
-      navigate(initialRoute, { replace: true });
-    }
-  }, []);
-
-  // Mark as ready once we're on the correct route
-  useEffect(() => {
-    if (initialRoute !== '/' && location.pathname === initialRoute) {
-      setIsReady(true);
-    }
-  }, [location.pathname, initialRoute]);
-
   // Save current route to localStorage whenever it changes
   useEffect(() => {
     if (isFirstRender.current) {
@@ -104,57 +87,23 @@ function PortfolioWrapper({ initialRoute }: { initialRoute: string }) {
   // Force scroll to top whenever route changes
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }
-    
-    const timer = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      }
-    }, 0);
-    
-    return () => clearTimeout(timer);
   }, [location.pathname]);
 
-  // Don't render content until we're on the correct route
-  if (!isReady) {
-    return (
-      <div className="w-screen h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-    );
-  }
-
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-x-hidden">
-      <div className="relative w-full">
-        <div ref={scrollContainerRef} className="w-full overflow-y-auto overflow-x-hidden">
-          <Routes>
-            <Route path="/" element={<PortfolioPage />} />
-            <Route path="/work" element={<WorkPage />} />
-            <Route path="/work/galegate" element={<GaleGateWrapper />} />
-            <Route path="/work/fashion-food" element={<FashionFoodWrapper />} />
-            <Route path="/work/home-sewing" element={<HomeSewingWrapper />} />
-            <Route path="/cv" element={<CVWrapper />} />
-            <Route path="/about" element={<AboutWrapper />} />
-            <Route path="/contact" element={<ContactWrapper />} />
-          </Routes>
-        </div>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<PortfolioPage />} />
+      <Route path="/work" element={<WorkPage />} />
+      <Route path="/work/galegate" element={<GaleGateWrapper />} />
+      <Route path="/work/fashion-food" element={<FashionFoodWrapper />} />
+      <Route path="/work/home-sewing" element={<HomeSewingWrapper />} />
+      <Route path="/cv" element={<CVWrapper />} />
+      <Route path="/about" element={<AboutWrapper />} />
+      <Route path="/contact" element={<ContactWrapper />} />
+    </Routes>
   );
 }
 
-// Check for saved route before Router initializes
-function getInitialRoute() {
-  const savedRoute = localStorage.getItem('figmaLastRoute');
-  return savedRoute || '/';
-}
-
 export default function App() {
-  const [initialRoute] = useState(getInitialRoute());
-  
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
@@ -164,9 +113,7 @@ export default function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/*" element={<PortfolioWrapper initialRoute={initialRoute} />} />
-      </Routes>
+      <PortfolioWrapper />
     </Router>
   );
 }
